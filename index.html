@@ -33,11 +33,10 @@
                },
                methods: {
                     async cateFetch() {
-                         const {
-                              data
-                         } = await http.get('./cate.json', {
+                         const { data } = await http.get('./cate.json', {
                               cache: true
                          })
+                         console.log(data);
                          this.list = data
                     }
                },

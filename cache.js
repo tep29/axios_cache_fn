@@ -10,7 +10,7 @@ export default class Cache {
 
      use(options) {
           let defaults = {
-               expire: 60000, // 过期时间 默认一分钟
+               expire: 5000, // 过期时间 默认一分钟
                storage: false, // 是否开启缓存
                storage_expire: 360000, // 本地缓存过期时间 默认一小时
                instance: this.axios, // axios的对象实例, 默认指向当前axios
