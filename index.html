@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+
+<body>
+     <div id="app">
+          <ul>
+               <li v-for="item in list" :key="item.id">
+                    <span>车名：{{item.name}}</span>
+                    <p>价格：{{item.price}}</p>
+               </li>
+          </ul>
+     </div>
+
+
+     <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+     <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.0.2/vue.global.js"></script>
+     <script type="module">
+          import app from './index.js'
+
+          let http = app(axios)
+
+          const App = {
+               data() {
+                    return {
+                         list: []
+                    }
+               },
+               methods: {
+                    async cateFetch() {
+                         const {
+                              data
+                         } = await http.get('./cate.json', {
+                              cache: true
+                         })
+                         this.list = data
+                    }
+               },
+               created() {
+                    this.cateFetch()
+               },
+          }
+
+          Vue.createApp(App).mount('#app');
+     </script>
+</body>
+
+</html>
